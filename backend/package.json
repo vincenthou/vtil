@@ -1,0 +1,23 @@
+{
+  "name": "vtil",
+  "description": "Util function for easy development",
+  "main": "./vtil",
+  "author": "Vincent Hou",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vincenthou/vtil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vincenthou/vtil/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/vincenthou/vtil/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "cpu-usage": "^0.1.0"
+  }
+}
