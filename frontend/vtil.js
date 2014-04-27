@@ -1,7 +1,14 @@
 (function(w){
     var vtil = {};
 
-    function centerImg (elem, pNode) {
+    /**
+     * Center normal image element in wrapper
+     * @param  {object} elem  image DOM element
+     */
+    function centerImg (elem) {
+        var pNode = elem.parentNode;
+        pNode.style.position = 'relative';
+        pNode.style.overflow = 'hidden';
         elem.style.position = 'absolute';
         elem.style.width = '100%';
         var pHeight = pNode.clientHeight;
@@ -14,7 +21,15 @@
         }
     };
 
-    function lazyCenterImg (elem, pNode, src) {
+    /**
+     * Center image element with data-src attribute for lazy loading
+     * @param  {object} elem  image DOM element
+     * @param  {string} src  the src of image
+     */
+    function lazyCenterImg (elem, src) {
+        var pNode = elem.parentNode;
+        pNode.style.position = 'relative';
+        pNode.style.overflow = 'hidden';
         var img = new Image();
         img.src = src;
         img.onload = function() {
@@ -34,22 +49,19 @@
         };
     };
 
-    vtil.autoCenterImg = function(elem) {
-        var pNode = elem.parentNode;
-        pNode.style.position = 'relative';
-        pNode.style.overflow = 'hidden';
-        var src = elem.getAttribute('data-src');
-        !src ? centerImg(elem, pNode) : lazyCenterImg(elem, pNode, src);
-    };
-
+    /**
+     * Center one or multiple images
+     * @param  {array} elems [description]
+     * @return {[type]}       [description]
+     */
     vtil.centerImgs = function(elems) {
         var len = elems.length;
-        if (1 === len) {
-            vtil.autoCenterImg(elems);
-        } else {
-            for (var i = 0; i < len; i++) {
-                vtil.autoCenterImg(elems[i]);
-            }
+        var elem = null;
+        var src = '';
+        for (var i = 0; i < len; i++) {
+            elem = elems[i];
+            src = elem.getAttribute('data-src');
+            !src ? centerImg(elem) : lazyCenterImg(elem, src);
         }
     };
     w.vtil = vtil;
