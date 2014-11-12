@@ -64,6 +64,19 @@
             !src ? centerImg(elem) : lazyCenterImg(elem, src);
         }
     };
+    
+    /**
+     * Lazy load javascript outside
+     * @param  {string} url requested URL
+     */
+    vtil.load: function(url) {
+        var head = document.getElementsByTagName('head');
+        var script = document.createElement('script');
+        script.src = url;
+        script.className = 'test';
+        script.setAttribute('async', 'async');
+        head[0].appendChild(script);
+    }
     w.vtil = vtil;
 })(window);
 
